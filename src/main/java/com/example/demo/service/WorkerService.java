@@ -8,7 +8,7 @@ public interface WorkerService {
 	
 	Worker saveWorker(Worker worker);
 	
-	Worker gerWorkerById(Long id);
+	Worker getWorkerById(Long id);
 	
 	List<Worker> getAllWorkers();
 	

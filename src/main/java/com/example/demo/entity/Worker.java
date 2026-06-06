@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,13 +12,21 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Worker {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long workerid;
+	
 	private String workerName;
 	private String mobile;
 	private String address;
 	private Double dailyWage;
 	private String siteName;
 	private LocalDate joiningDate;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy="worker",cascade=CascadeType.ALL)
+	private List<Attendance> attendances;
+	
 	public Long getWorkerid() {
 		return workerid;
 	}

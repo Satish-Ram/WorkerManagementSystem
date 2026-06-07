@@ -14,7 +14,7 @@ import lombok.*;
 public class Worker {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long workerid;
+	private Long workerId;
 	
 	private String workerName;
 	private String mobile;
@@ -27,11 +27,14 @@ public class Worker {
 	@OneToMany(mappedBy="worker",cascade=CascadeType.ALL)
 	private List<Attendance> attendances;
 	
-	public Long getWorkerid() {
-		return workerid;
+	@OneToMany(mappedBy="worker",cascade=CascadeType.ALL)
+	private List<Salary> salaries;
+	
+	public Long getWorkerId() {
+		return workerId;
 	}
-	public void setWorkerid(Long workerid) {
-		this.workerid = workerid;
+	public void setWorkerId(Long workerId) {
+		this.workerId = workerId;
 	}
 	public String getWorkerName() {
 		return workerName;

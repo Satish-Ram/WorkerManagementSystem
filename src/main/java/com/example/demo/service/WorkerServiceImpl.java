@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Worker;
+import com.example.demo.exception.WorkerNotFoundException;
 import com.example.demo.repository.WorkerRepository;
 
 @Service
@@ -22,7 +23,7 @@ public class WorkerServiceImpl implements WorkerService{
 
 	@Override
 	public Worker getWorkerById(Long id) {
-		return workerRepository.findById(id).orElseThrow(()->new RuntimeException("Worker Not Found"));
+		return workerRepository.findById(id).orElseThrow(()->new WorkerNotFoundException("Worker Not Found With ID:"+id));
 	}
 
 	@Override

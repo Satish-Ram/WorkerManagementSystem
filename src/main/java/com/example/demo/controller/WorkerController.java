@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.dto.WorkerDTO;
+import com.example.demo.dto.WorkerMapper;
 import com.example.demo.entity.Worker;
 import com.example.demo.service.WorkerService;
 
@@ -23,13 +25,14 @@ public class WorkerController {
 	}
 	
 	@GetMapping("/{id}")
-	public Worker getWorker(@PathVariable Long id) {
-		return workerService.getWorkerById(id);
+	public WorkerDTO getWorker(@PathVariable Long id) {
+		Worker worker=workerService.getWorkerById(id);
+		return WorkerMapper.toDTO(worker);
 	}
 	
 	@GetMapping
-	public List<Worker> getAllWorkers(){
-		return workerService.getAllWorkers();
+	public List<WorkerDTO> getAllWorkers(){
+		return workerService.getAllWorkers().stream().map(WorkerMapper::toDTO).toList();
 	}
 	
 	@PutMapping("/{id}")

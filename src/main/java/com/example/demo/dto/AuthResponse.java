@@ -1,12 +1,21 @@
 package com.example.demo.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
+
 public class AuthResponse {
 	private String token;
+	
+
+	public AuthResponse(String token) {
+		super();
+		this.token = token;
+	}
 
 	public String getToken() {
 		return token;

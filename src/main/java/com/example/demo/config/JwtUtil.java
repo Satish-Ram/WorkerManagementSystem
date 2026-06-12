@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import java.util.Date;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
@@ -27,5 +28,16 @@ public class JwtUtil {
 	}
 	public String extractUsername(String token) {
 		return Jwts.parser().verifyWith(Keys.hmacShaKeyFor(SECRET.getBytes())).build().parseSignedClaims(token).getPayload().getSubject();
+	}
+	
+	public boolean validateToken(
+	        String token,
+	        String username) {
+
+	    String extractedUsername =
+	            extractUsername(token);
+
+	    return extractedUsername
+	            .equals(username);
 	}
 }
